@@ -1,0 +1,273 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.emergencySection, .firstAidSection {
+  margin-bottom: 3rem;
+}
+
+.emergencySection h2, .firstAidSection h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.emergencySection h2::after, .firstAidSection h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+  border-radius: 2px;
+}
+
+.contactsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+}
+
+.contactCard {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.contactCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ef4444, #dc2626, #b91c1c);
+  border-radius: 20px 20px 0 0;
+}
+
+.contactCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #ef4444;
+}
+
+.contactHeader {
+  margin-bottom: 1rem;
+}
+
+.contactHeader h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-primary);
+}
+
+.contactType {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.contactNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+.contactCard p {
+  margin-bottom: 1.5rem;
+  color: var(--color-muted);
+}
+
+.callBtn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.callBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.callBtn:hover::before {
+  left: 100%;
+}
+
+.callBtn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.6);
+}
+
+.firstAidSection > p {
+  text-align: center;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.tipCard {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.tipCard h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.tipCard ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.tipCard li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.warning {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 2px solid #f59e0b;
+  border-radius: 20px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.warning::before {
+  content: '⚠️';
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  font-size: 4rem;
+  opacity: 0.1;
+  transform: rotate(15deg);
+}
+
+.warning h3 {
+  color: #92400e;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.warning p {
+  color: #92400e;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.warning ul {
+  margin: 0;
+  padding-left: 2rem;
+  list-style: none;
+}
+
+.warning li {
+  color: #92400e;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  border-left: 4px solid #f59e0b;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.warning li:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
+}
+
+@media (max-width: 768px) {
+  .contactsGrid, .tipsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero {
+    padding: 1.5rem;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+}

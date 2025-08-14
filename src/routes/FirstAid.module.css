@@ -1,0 +1,472 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  color: var(--color-primary);
+}
+
+.header p {
+  color: var(--color-muted);
+  font-size: 1.1rem;
+}
+
+.emergencyNumbers {
+  margin-bottom: 3rem;
+}
+
+.emergencyNumbers h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.numbersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.emergencyCard {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.emergencyCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.emergencyCard h3 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.phoneNumber {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-error);
+  margin-bottom: 1rem;
+}
+
+.emergencyCard p {
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.callBtn {
+  background: var(--color-error);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.callBtn:hover {
+  background: #dc2626;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters label {
+  font-weight: 600;
+  color: var(--color-heading);
+  font-size: 1rem;
+}
+
+.severityFilter {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 25px;
+  background: var(--color-input-bg);
+  color: var(--color-text);
+  min-width: 180px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.severityFilter:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.scenariosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.scenarioCard {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.scenarioCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-success));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scenarioCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-primary);
+}
+
+.scenarioCard:hover::before {
+  opacity: 1;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.scenarioIcon {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-success));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.scenarioInfo h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.severity {
+  padding: 0.4rem 1rem;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.severity.low {
+  background: linear-gradient(135deg, var(--color-success), #10b981);
+}
+
+.severity.medium {
+  background: linear-gradient(135deg, var(--color-warning), #f59e0b);
+}
+
+.severity.high {
+  background: linear-gradient(135deg, var(--color-error), #dc2626);
+}
+
+.stepsSection, .dontsSection {
+  margin-bottom: 1.25rem;
+}
+
+.stepsSection h4, .dontsSection h4 {
+  color: var(--color-heading);
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stepsSection h4::before {
+  content: '✅';
+  font-size: 1.1rem;
+}
+
+.dontsSection h4::before {
+  content: '❌';
+  font-size: 1.1rem;
+}
+
+.stepsSection ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.stepsSection li {
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.dontsSection ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.dontsSection li {
+  margin-bottom: 0.4rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.learnMoreBtn, .videoBtn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.learnMoreBtn {
+  background: linear-gradient(135deg, var(--color-primary), #3b82f6);
+  color: white;
+}
+
+.learnMoreBtn:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark), #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.videoBtn {
+  background: linear-gradient(135deg, var(--color-success), #10b981);
+  color: white;
+}
+
+.videoBtn:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+}
+
+.importantNotes {
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid #f59e0b;
+}
+
+.importantNotes h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #92400e;
+  font-size: 1.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.importantNotes h2::before {
+  content: '⚠️';
+  font-size: 2rem;
+}
+
+.notesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.noteItem {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #f59e0b;
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.noteItem:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.noteItem h3 {
+  color: #92400e;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.noteItem h3::before {
+  content: '📋';
+  font-size: 1.2rem;
+}
+
+.noteItem ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.noteItem li {
+  margin-bottom: 0.5rem;
+  color: #92400e;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.disclaimer {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  border: 2px solid #ef4444;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.disclaimer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.disclaimer h3 {
+  color: #991b1b;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.disclaimer h3::before {
+  content: '🚨';
+  font-size: 1.75rem;
+}
+
+.disclaimer p {
+  color: #991b1b;
+  margin: 0;
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .severityFilter {
+    min-width: auto;
+  }
+  
+  .scenariosGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .notesList {
+    grid-template-columns: 1fr;
+  }
+  
+  .scenarioCard {
+    padding: 1.25rem;
+  }
+  
+  .importantNotes {
+    padding: 1.5rem;
+  }
+  
+  .disclaimer {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .scenarioCard {
+    padding: 1rem;
+  }
+  
+  .importantNotes {
+    padding: 1.25rem;
+  }
+  
+  .disclaimer {
+    padding: 1.25rem;
+  }
+  
+  .header h1 {
+    font-size: 1.75rem;
+  }
+}

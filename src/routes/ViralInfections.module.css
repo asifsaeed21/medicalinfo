@@ -1,0 +1,521 @@
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.header h1 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.header p {
+  color: var(--color-muted);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filters label {
+  font-weight: 600;
+  color: var(--color-heading);
+  font-size: 1.1rem;
+}
+
+.severityFilter {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-input-bg);
+  color: var(--color-text);
+  min-width: 180px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.severityFilter:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.infectionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.infectionCard {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  height: fit-content;
+}
+
+.infectionCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-success) 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.infectionCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: var(--color-primary);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.infectionIcon {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.infectionInfo h3 {
+  margin: 0 0 0.75rem 0;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.severity {
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.severity.low {
+  background: linear-gradient(135deg, var(--color-success) 0%, #10b981 100%);
+}
+
+.severity.medium {
+  background: linear-gradient(135deg, var(--color-warning) 0%, #f59e0b 100%);
+}
+
+.severity.high {
+  background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+}
+
+.cardContent {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.symptomsSection, .preventionSection, .treatmentSection {
+  margin-bottom: 0;
+}
+
+.symptomsSection h4, .preventionSection h4, .treatmentSection h4 {
+  color: var(--color-heading);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.symptomsSection h4::before {
+  content: '🔍';
+  font-size: 1rem;
+}
+
+.preventionSection h4::before {
+  content: '🛡️';
+  font-size: 1rem;
+}
+
+.treatmentSection h4::before {
+  content: '💊';
+  font-size: 1rem;
+}
+
+.symptomsSection ul, .preventionSection ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.symptomsSection li, .preventionSection li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.treatmentSection p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.learnMoreBtn, .consultBtn {
+  padding: 0.875rem 1.75rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.learnMoreBtn {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.learnMoreBtn:hover {
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #1e40af 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+}
+
+.consultBtn {
+  background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.consultBtn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.generalPrevention {
+  margin-bottom: 3rem;
+}
+
+.generalPrevention h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--color-heading);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tipCard {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid #e2e8f0;
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tipCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-primary);
+  background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+.tipNumber {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  color: white;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.tipCard p {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.emergencyInfo {
+  margin-bottom: 3rem;
+}
+
+.emergencyInfo h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--color-error);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.emergencyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.emergencyCard {
+  background: linear-gradient(145deg, #fef2f2 0%, #fee2e2 100%);
+  border: 2px solid #fecaca;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.emergencyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-error) 0%, #dc2626 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.emergencyCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(239, 68, 68, 0.15);
+  border-color: var(--color-error);
+}
+
+.emergencyIcon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.emergencyCard h3 {
+  color: var(--color-error);
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.emergencyCard p {
+  margin: 0;
+  color: #991b1b;
+  line-height: 1.6;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.disclaimer {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #f59e0b;
+  border-radius: 25px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.15);
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.disclaimer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+}
+
+.disclaimer h3 {
+  color: #92400e;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.disclaimer p {
+  color: #92400e;
+  margin: 0;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+  .infectionsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+  
+  .tipsGrid, .emergencyGrid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .severityFilter {
+    min-width: auto;
+  }
+  
+  .infectionsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .tipsGrid, .emergencyGrid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .actions {
+    flex-direction: column;
+  }
+  
+  .infectionCard {
+    padding: 1.5rem;
+  }
+  
+  .tipCard {
+    padding: 1.25rem;
+  }
+  
+  .emergencyCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .disclaimer {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  .header {
+    padding: 1.5rem 0;
+  }
+  
+  .header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .infectionCard {
+    padding: 1.25rem;
+    border-radius: 15px;
+  }
+  
+  .tipCard {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .emergencyCard {
+    padding: 1.5rem 1rem;
+    border-radius: 15px;
+  }
+  
+  .disclaimer {
+    padding: 1.5rem 1rem;
+    border-radius: 20px;
+  }
+  
+  .infectionIcon {
+    font-size: 3rem;
+  }
+  
+  .emergencyIcon {
+    font-size: 2.5rem;
+  }
+}
