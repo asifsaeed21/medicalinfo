@@ -184,6 +184,32 @@ const FIRST_AID_SCENARIOS = [
   }
 ];
 
+const VIDEO_LINKS = {
+  Bleeding: 'https://www.youtube.com/watch?v=NxO5LvgqZe0',
+  Burns: 'https://www.youtube.com/watch?v=B51VgoEZcDs',
+  Choking: 'https://www.youtube.com/watch?v=4j329wUsl3s',
+  Fractures: 'https://www.youtube.com/watch?v=sPzXAVNVJr0',
+  'Heart Attack': 'https://www.youtube.com/watch?v=6ZGg0zJUFEI',
+  Seizures: 'https://www.youtube.com/watch?v=qvGa-UToojM',
+  'Heat Stroke': 'https://www.youtube.com/watch?v=R6VdoV8dZRc',
+  Poisoning: 'https://www.youtube.com/watch?v=b2ieb8BZJuY',
+  'Eye Injury': 'https://www.youtube.com/watch?v=PHrrxe3p8vw',
+  'Snake Bite': 'https://www.youtube.com/watch?v=nH8o-bgwo_g',
+};
+
+const LEARN_MORE_LINKS = {
+  Bleeding: 'https://www.mayoclinic.org/first-aid/first-aid-severe-bleeding/basics/art-20056661',
+  Burns: 'https://www.mayoclinic.org/first-aid/first-aid-burns/basics/art-20056649',
+  Choking: 'https://www.mayoclinic.org/first-aid/first-aid-choking/basics/art-20056637',
+  Fractures: 'https://www.mayoclinic.org/first-aid/first-aid-fractures/basics/art-20056641',
+  'Heart Attack': 'https://www.mayoclinic.org/first-aid/first-aid-heart-attack/basics/art-20056679',
+  Seizures: 'https://www.cdc.gov/epilepsy/first-aid-for-seizures/index.html',
+  'Heat Stroke': 'https://www.mayoclinic.org/first-aid/first-aid-heatstroke/basics/art-20056655',
+  Poisoning: 'https://poisonhelp.hrsa.gov/what-you-can-do#:~:text=First%20steps&text=If%20the%20person%20inhaled%20poison,for%2015%20to%2020%20minutes.',
+  'Eye Injury': 'https://my.clevelandclinic.org/health/diseases/eye-injury',
+  'Snake Bite': 'https://www.mayoclinic.org/first-aid/first-aid-snake-bites/basics/art-20056681',
+};
+
 export default function FirstAid() {
   const [selectedSeverity, setSelectedSeverity] = useState('all');
   const [animateFilter, setAnimateFilter] = useState(false);
@@ -257,8 +283,18 @@ export default function FirstAid() {
             </div>
 
             <div className={styles.actions}>
-              <button className={styles.learnMoreBtn}>Learn More</button>
-              <button className={styles.videoBtn}>Watch Video</button>
+              <button
+                className={styles.learnMoreBtn}
+                onClick={() => window.open(LEARN_MORE_LINKS[scenario.title], '_blank', 'noopener,noreferrer')}
+              >
+                Learn More
+              </button>
+              <button
+                className={styles.videoBtn}
+                onClick={() => window.open(VIDEO_LINKS[scenario.title], '_blank', 'noopener,noreferrer')}
+              >
+                Watch Video
+              </button>
             </div>
           </div>
         ))}

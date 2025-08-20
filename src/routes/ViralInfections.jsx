@@ -87,6 +87,28 @@ const PREVENTION_TIPS = [
   "Stay informed about local health advisories"
 ];
 
+const LEARN_MORE_LINKS = {
+  'COVID-19': 'https://www.mayoclinic.org/diseases-conditions/coronavirus/in-depth/treating-covid-19-at-home/art-20483273',
+  'Dengue Fever': 'https://dndi.org/diseases/dengue/facts/?gad_source=1&gad_campaignid=17059181031&gbraid=0AAAAABxzi7LmSvG-m0SxbQTFWv69s6zWg&gclid=Cj0KCQjw5JXFBhCrARIsAL1ckPsJUEy7j03WehkCxapwhn0v0hlrwwhc4i8q8W5NxaXj8t10avvnvCwaAjt0EALw_wcB',
+  'Chikungunya': 'https://www.cdc.gov/chikungunya/symptoms-diagnosis-treatment/index.html',
+  'Hepatitis A': 'https://www.mayoclinic.org/diseases-conditions/hepatitis-a/diagnosis-treatment/drc-20367055',
+  'Hepatitis B': 'https://www.mayoclinic.org/diseases-conditions/hepatitis-b/diagnosis-treatment/drc-20366821',
+  'Influenza (Flu)': 'https://www.mayoclinic.org/diseases-conditions/flu/diagnosis-treatment/drc-20351725',
+  'Chickenpox': 'https://www.mayoclinic.org/diseases-conditions/chickenpox/diagnosis-treatment/drc-20351287',
+  'Measles': 'https://www.mayoclinic.org/diseases-conditions/measles/diagnosis-treatment/drc-20374862',
+};
+
+const CONSULT_LINKS = {
+  'COVID-19': 'https://www.marham.pk/all-diseases/coronavirus/islamabad',
+  'Dengue Fever': 'https://www.marham.pk/all-diseases/dengue-fever/rawalpindi',
+  'Chikungunya': 'https://www.marham.pk/all-diseases/chikungunya/islamabad',
+  'Hepatitis A': 'https://www.marham.pk/all-diseases/hepatitis/pakistan',
+  'Hepatitis B': 'https://www.marham.pk/all-diseases/hepatitis-b-and-c/rawalpindi',
+  'Influenza (Flu)': 'https://www.marham.pk/all-diseases/flu/rawalpindi',
+  'Chickenpox': 'https://www.marham.pk/all-diseases/chicken-pox/rawalpindi',
+  'Measles': 'https://www.marham.pk/all-diseases/measles/rawalpindi',
+};
+
 export default function ViralInfections() {
   const [selectedSeverity, setSelectedSeverity] = useState('all');
   const [animateFilter, setAnimateFilter] = useState(false);
@@ -161,8 +183,18 @@ export default function ViralInfections() {
             </div>
 
             <div className={styles.actions}>
-              <button className={styles.learnMoreBtn}>Learn More</button>
-              <button className={styles.consultBtn}>Consult Doctor</button>
+              <button
+                className={styles.learnMoreBtn}
+                onClick={() => window.open(LEARN_MORE_LINKS[infection.name], '_blank', 'noopener,noreferrer')}
+              >
+                Learn More
+              </button>
+              <button
+                className={styles.consultBtn}
+                onClick={() => window.open(CONSULT_LINKS[infection.name], '_blank', 'noopener,noreferrer')}
+              >
+                Consult Doctor
+              </button>
             </div>
           </div>
         ))}

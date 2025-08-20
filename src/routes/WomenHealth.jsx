@@ -12,7 +12,8 @@ const WOMEN_HEALTH_DATA = [
       "Exercise during pregnancy",
       "Warning signs to watch for"
     ],
-    icon: "🤱"
+    icon: "🤱",
+    link: "https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life/health-tips-for-pregnant-women"
   },
   {
     id: 2,
@@ -24,7 +25,8 @@ const WOMEN_HEALTH_DATA = [
       "STI prevention and testing",
       "Menstrual health"
     ],
-    icon: "🌸"
+    icon: "🌸",
+    link: "https://www.betterhealth.vic.gov.au/campaigns/womens-sexual-and-reproductive-health"
   },
   {
     id: 3,
@@ -36,7 +38,8 @@ const WOMEN_HEALTH_DATA = [
       "Risk factors awareness",
       "Early detection importance"
     ],
-    icon: "💝"
+    icon: "💝",
+    link: "https://www.breastcancer.org/about-you/concerned-about-risk?gad_source=1&gad_campaignid=2484570&gbraid=0AAAAAD_jk-6zDUCtpXlBqKOn_DA3lObW0&gclid=Cj0KCQjw5JXFBhCrARIsAL1ckPvAZVlyUgwszxgFD3ecZfy29Y7U6U9qcr0tixuokYVJfEuCWkc4AQEaAkXHEALw_wcB"
   },
   {
     id: 4,
@@ -48,7 +51,8 @@ const WOMEN_HEALTH_DATA = [
       "Work-life balance",
       "Seeking professional help"
     ],
-    icon: "🧠"
+    icon: "🧠",
+    link: "https://womenshealth.gov/nwhw/mental-health"
   },
   {
     id: 5,
@@ -60,7 +64,8 @@ const WOMEN_HEALTH_DATA = [
       "Heart health awareness",
       "Quality of life maintenance"
     ],
-    icon: "🌺"
+    icon: "🌺",
+    link: "https://vitalsolutioning.org/vs-menopause-workout-program?gad_source=1&gad_campaignid=22541136892&gbraid=0AAAAA-GhxmhqDIjAoD016SsE8XkzEmVOH&gclid=Cj0KCQjw5JXFBhCrARIsAL1ckPtet0lAZ-l171QkY7pr1utYPl2iKnMQlFmfGyTBn0kpePiY2PorhLoaAjLXEALw_wcB"
   },
   {
     id: 6,
@@ -72,7 +77,8 @@ const WOMEN_HEALTH_DATA = [
       "Hydration importance",
       "Physical activity guidelines"
     ],
-    icon: "🥗"
+    icon: "🥗",
+    link: "https://www.helpguide.org/wellness/nutrition/diet-and-nutrition-tips-for-women"
   },
   {
     id: 7,
@@ -84,7 +90,8 @@ const WOMEN_HEALTH_DATA = [
       "Health wellness",
       "Communication skills"
     ],
-    icon: "💕"
+    icon: "💕",
+    link: "https://www.mdanderson.org/publications/focused-on-health/Health-tips-for-women-20s-30s-40s-50s.h24-1592202.html"
   }
 ];
 
@@ -120,7 +127,7 @@ export default function WomenHealth() {
                   <li key={index} className={`${styles.chip} ${index % 2 === 1 ? styles.chipSuccess : ''}`}>{item}</li>
                 ))}
               </ul>
-              <button className={styles.learnMoreBtn}>Learn More</button>
+              <a href={topic.link} target="_blank" rel="noopener noreferrer" className={styles.learnMoreBtn}>Learn More</a>
             </div>
           ))}
         </div>
@@ -146,7 +153,7 @@ export default function WomenHealth() {
               <h3>🏥 Find Women's Health Specialists</h3>
               <p>Locate gynecologists, obstetricians, and women's health clinics in your area. Get expert care from qualified healthcare professionals.</p>
             </div>
-            <button className={styles.resourceBtn}>Search Specialists</button>
+            <a href="https://www.apkamuaalij.com/doctors/gynecologist?srsltid=AfmBOoqsQDF7NqwZchiUCN9HPMGHa3FPHRCX2HcJtIxISZev3b4gf_KQ" target="_blank" rel="noopener noreferrer" className={styles.resourceBtn}>Search Specialists</a>
           </div>
           
           <div className={styles.resourceCard}>
@@ -154,7 +161,7 @@ export default function WomenHealth() {
               <h3>📚 Educational Materials</h3>
               <p>Access reliable, evidence-based information about women's health topics, concerns, and preventive care guidelines.</p>
             </div>
-            <button className={styles.resourceBtn}>Browse Resources</button>
+            <a href="https://www.barefootcollege.org/a-look-ahead-womens-health-in-2025/?gad_source=1&gad_campaignid=10835843987&gbraid=0AAAAACRCuxGFgkXGSMnlzQ47og6Q7vCQt&gclid=Cj0KCQjw5JXFBhCrARIsAL1ckPuXXoVbjM6bRiwkoXIdWQo6Qn4VVX4WGEtnyZZi1vqRcgF-wa9uxQMaAjawEALw_wcB" target="_blank" rel="noopener noreferrer" className={styles.resourceBtn}>Browse Resources</a>
           </div>
           
           <div className={styles.resourceCard}>
@@ -162,7 +169,7 @@ export default function WomenHealth() {
               <h3>📞 Support Hotlines</h3>
               <p>Get confidential support, counseling, and information about women's health issues from trained professionals.</p>
             </div>
-            <button className={styles.resourceBtn}>Contact Support</button>
+            <a href="https://pcsw.punjab.gov.pk/helpline_" target="_blank" rel="noopener noreferrer" className={styles.resourceBtn}>Contact Support</a>
           </div>
         </div>
       </div>
