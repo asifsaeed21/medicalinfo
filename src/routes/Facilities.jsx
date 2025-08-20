@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import styles from './Facilities.module.css';
 
 const FACILITIES = [
@@ -215,25 +215,30 @@ const FACILITIES = [
 
 export default function Facilities() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedTerm, setDebouncedTerm] = useState('');
   const [selectedCity, setSelectedCity] = useState('all');
   const [selectedType, setSelectedType] = useState('all');
+
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedTerm(searchTerm.trim()), 150);
+    return () => clearTimeout(t);
+  }, [searchTerm]);
 
   const cities = ['all', ...Array.from(new Set(FACILITIES.map(f => f.city)))];
   const types = ['all', ...Array.from(new Set(FACILITIES.map(f => f.type)))];
 
-  const filteredFacilities = FACILITIES.filter(facility => {
-    const matchesSearch = facility.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         facility.address.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCity = selectedCity === 'all' || facility.city === selectedCity;
-    const matchesType = selectedType === 'all' || facility.type === selectedType;
-    
-    return matchesSearch && matchesCity && matchesType;
-  });
+  const filteredFacilities = useMemo(() => {
+    const term = debouncedTerm.toLowerCase();
+    return FACILITIES.filter(facility => {
+      const matchesSearch = !term || facility.name.toLowerCase().includes(term) || facility.address.toLowerCase().includes(term);
+      const matchesCity = selectedCity === 'all' || facility.city === selectedCity;
+      const matchesType = selectedType === 'all' || facility.type === selectedType;
+      return matchesSearch && matchesCity && matchesType;
+    });
+  }, [debouncedTerm, selectedCity, selectedType]);
 
   const handleCall = (phoneNumber) => {
-    // Remove any non-digit characters except + for international calls
     const cleanNumber = phoneNumber.replace(/[^\d+]/g, '');
-    // Open phone dialer with the number
     window.open(`tel:${cleanNumber}`, '_self');
   };
 
@@ -256,6 +261,7 @@ export default function Facilities() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className={styles.searchInput}
+            aria-label="Search facilities"
           />
         </div>
         
@@ -264,6 +270,7 @@ export default function Facilities() {
             value={selectedCity} 
             onChange={(e) => setSelectedCity(e.target.value)}
             className={styles.select}
+            aria-label="Filter by city"
           >
             {cities.map(city => (
               <option key={city} value={city}>
@@ -278,6 +285,7 @@ export default function Facilities() {
             value={selectedType} 
             onChange={(e) => setSelectedType(e.target.value)}
             className={styles.select}
+            aria-label="Filter by type"
           >
             {types.map(type => (
               <option key={type} value={type}>
@@ -290,26 +298,25 @@ export default function Facilities() {
 
       <div className={styles.facilities}>
         {filteredFacilities.length === 0 ? (
-          <div className={styles.emptyState}>
-            <p>No facilities found matching your criteria.</p>
+          <div className={styles.emptyState} role="status" aria-live="polite">
+            <div className={styles.spinner}></div>
+            <p>No facilities found. Try a different keyword or filters.</p>
           </div>
         ) : (
-          filteredFacilities.map(facility => (
-            <div key={facility.id} className={styles.facilityCard}>
+          filteredFacilities.map((facility, idx) => (
+            <div key={facility.id} className={`${styles.facilityCard} ${styles.fadeIn}`} style={{ animationDelay: `${idx * 40}ms` }}>
               <div className={styles.facilityHeader}>
                 <h3>{facility.name}</h3>
                 <span className={styles.rating}>⭐ {facility.rating}</span>
               </div>
+
+              <div className={styles.badges}>
+                <span className={styles.badge}>{facility.type}</span>
+                <span className={`${styles.badge} ${styles.badgeMuted}`}>{facility.city}</span>
+                <span className={`${styles.badge} ${styles.badgeSuccess}`}>Emergency {facility.emergency}</span>
+              </div>
               
               <div className={styles.facilityInfo}>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Type:</span>
-                  <span className={styles.infoValue}>{facility.type}</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>City:</span>
-                  <span className={styles.infoValue}>{facility.city}</span>
-                </div>
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Address:</span>
                   <span className={styles.infoValue}>{facility.address}</span>
@@ -317,10 +324,6 @@ export default function Facilities() {
                 <div className={styles.infoRow}>
                   <span className={styles.infoLabel}>Phone:</span>
                   <span className={styles.infoValue}>{facility.phone}</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.infoLabel}>Emergency:</span>
-                  <span className={styles.infoValue}>{facility.emergency}</span>
                 </div>
               </div>
 

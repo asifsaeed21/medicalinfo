@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import styles from './Diseases.module.css';
 
 const DISEASES_DATA = [
@@ -121,13 +121,22 @@ const CATEGORIES = ['All', ...Array.from(new Set(DISEASES_DATA.map(d => d.catego
 export default function Diseases() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedTerm, setDebouncedTerm] = useState('');
 
-  const filteredDiseases = DISEASES_DATA.filter(disease => {
-    const matchesCategory = selectedCategory === 'All' || disease.category === selectedCategory;
-    const matchesSearch = disease.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         disease.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  // Debounce search input for smoother UI
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedTerm(searchTerm.trim()), 150);
+    return () => clearTimeout(t);
+  }, [searchTerm]);
+
+  const filteredDiseases = useMemo(() => {
+    const term = debouncedTerm.toLowerCase();
+    return DISEASES_DATA.filter(disease => {
+      const matchesCategory = selectedCategory === 'All' || disease.category === selectedCategory;
+      const matchesSearch = !term || disease.name.toLowerCase().includes(term) || disease.description.toLowerCase().includes(term);
+      return matchesCategory && matchesSearch;
+    });
+  }, [selectedCategory, debouncedTerm]);
 
   return (
     <div className={styles.container}>
@@ -144,6 +153,7 @@ export default function Diseases() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className={styles.searchInput}
+            aria-label="Search diseases"
           />
         </div>
         
@@ -152,6 +162,7 @@ export default function Diseases() {
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
             className={styles.categorySelect}
+            aria-label="Filter by category"
           >
             {CATEGORIES.map(category => (
               <option key={category} value={category}>{category}</option>
@@ -162,12 +173,13 @@ export default function Diseases() {
 
       <div className={styles.diseasesGrid}>
         {filteredDiseases.length === 0 ? (
-          <div className={styles.emptyState}>
-            <p>No diseases found matching your criteria.</p>
+          <div className={styles.emptyState} role="status" aria-live="polite">
+            <div className={styles.spinner}></div>
+            <p>No diseases found. Try a different keyword or category.</p>
           </div>
         ) : (
-          filteredDiseases.map(disease => (
-            <div key={disease.id} className={styles.diseaseCard}>
+          filteredDiseases.map((disease, idx) => (
+            <div key={disease.id} className={`${styles.diseaseCard} ${styles.fadeIn}`} style={{ animationDelay: `${idx * 40}ms` }}>
               <div className={styles.diseaseHeader}>
                 <h3>{disease.name}</h3>
                 <span className={styles.category}>{disease.category}</span>
@@ -177,19 +189,19 @@ export default function Diseases() {
               
               <div className={styles.diseaseContent}>
                 <div className={styles.symptomsSection}>
-                  <h4>Common Symptoms:</h4>
-                  <ul>
+                  <h4>Common Symptoms</h4>
+                  <ul className={styles.chips}>
                     {disease.symptoms.map((symptom, index) => (
-                      <li key={index}>{symptom}</li>
+                      <li key={index} className={styles.chip}>{symptom}</li>
                     ))}
                   </ul>
                 </div>
                 
                 <div className={styles.preventionSection}>
-                  <h4>Prevention:</h4>
-                  <ul>
+                  <h4>Prevention</h4>
+                  <ul className={styles.chips}>
                     {disease.prevention.map((prevention, index) => (
-                      <li key={index}>{prevention}</li>
+                      <li key={index} className={`${styles.chip} ${styles.chipSuccess}`}>{prevention}</li>
                     ))}
                   </ul>
                 </div>

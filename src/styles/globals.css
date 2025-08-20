@@ -42,16 +42,16 @@ body {
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(148, 163, 184, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.07) 0%, transparent 55%),
+    radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.07) 0%, transparent 55%),
+    radial-gradient(circle at 40% 40%, rgba(148, 163, 184, 0.05) 0%, transparent 55%);
   pointer-events: none;
   z-index: -1;
 }
 
 main {
   flex: 1;
-  padding: var(--header-height) 0 0 0;
+  padding: 0; /* runtime paddingTop is applied inline using --header-height */
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
@@ -73,29 +73,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 { 
-  font-size: 2.5rem; 
+  font-size: 2.4rem; 
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 h2 { 
-  font-size: 2rem; 
+  font-size: 1.9rem; 
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 h3 { 
-  font-size: 1.75rem; 
-  font-weight: 600;
-}
-h4 { 
-  font-size: 1.5rem; 
-  font-weight: 600;
-}
-h5 { 
-  font-size: 1.25rem; 
-  font-weight: 600;
-}
-h6 { 
-  font-size: 1rem; 
+  font-size: 1.6rem; 
   font-weight: 600;
 }
 
@@ -187,7 +175,6 @@ input:focus, textarea:focus, select:focus {
   border-color: var(--color-primary-light);
 }
 
-/* Smooth transitions for interactive elements */
 * {
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -198,8 +185,8 @@ input:focus, textarea:focus, select:focus {
   }
   
   h1 { font-size: 2rem; }
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.5rem; }
+  h2 { font-size: 1.7rem; }
+  h3 { font-size: 1.45rem; }
   
   body {
     font-size: 15px;

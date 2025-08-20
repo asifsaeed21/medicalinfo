@@ -23,10 +23,8 @@ export default function Footer({ show = true }) {
             <h4>Contact</h4>
             <p>For medical emergencies, call <a href="tel:1122" className={styles.contactLink}>1122</a></p>
             <p>Email: <a 
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=asif.saeed78650@gmail.com&su=Question from Pakistan Medical Guide"
+              href="mailto:asif.saeed78650@gmail.com?subject=Question%20from%20Pakistan%20Medical%20Guide"
               className={styles.contactLink}
-              target="_blank"
-              rel="noopener noreferrer"
             >asif.saeed78650@gmail.com</a></p>
           </div>
         </div>

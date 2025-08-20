@@ -93,6 +93,16 @@ export default function Emergency() {
           {EMERGENCY_CONTACTS.map(contact => (
             <div key={contact.id} className={styles.contactCard}>
               <div className={styles.contactHeader}>
+                {/* Add icon based on type */}
+                <span style={{fontSize: '1.5rem', marginRight: 6}}>
+                  {contact.type === 'Police' && '🚓'}
+                  {contact.type === 'Medical' && '🚑'}
+                  {contact.type === 'Fire' && '🚒'}
+                  {contact.type === 'Rescue' && '🆘'}
+                  {contact.type === 'Security' && '💣'}
+                  {contact.type === 'Maritime' && '🛥️'}
+                  {!['Police','Medical','Fire','Rescue','Security','Maritime'].includes(contact.type) && '📞'}
+                </span>
                 <h3>{contact.name}</h3>
                 <span className={styles.contactType}>{contact.type}</span>
               </div>

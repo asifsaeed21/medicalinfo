@@ -89,6 +89,7 @@ const PREVENTION_TIPS = [
 
 export default function ViralInfections() {
   const [selectedSeverity, setSelectedSeverity] = useState('all');
+  const [animateFilter, setAnimateFilter] = useState(false);
 
   const filteredInfections = VIRAL_INFECTIONS.filter(infection => {
     if (selectedSeverity === 'all') return true;
@@ -102,12 +103,16 @@ export default function ViralInfections() {
         <p>Information about common viral infections in Pakistan, prevention, and treatment</p>
       </div>
 
-      <div className={styles.filters}>
+      <div className={`${styles.filters} ${animateFilter ? styles.filterPulse : ''}`}>
         <label htmlFor="severity-filter">Filter by Severity:</label>
         <select
           id="severity-filter"
           value={selectedSeverity}
-          onChange={(e) => setSelectedSeverity(e.target.value)}
+          onChange={(e) => {
+            setSelectedSeverity(e.target.value);
+            setAnimateFilter(true);
+            setTimeout(() => setAnimateFilter(false), 300);
+          }}
           className={styles.severityFilter}
         >
           <option value="all">All Severities</option>
@@ -118,8 +123,8 @@ export default function ViralInfections() {
       </div>
 
       <div className={styles.infectionsGrid}>
-        {filteredInfections.map(infection => (
-          <div key={infection.id} className={styles.infectionCard}>
+        {filteredInfections.map((infection, idx) => (
+          <div key={infection.id} className={`${styles.infectionCard} ${styles.fadeIn}`} style={{ animationDelay: `${idx * 60}ms` }}>
             <div className={styles.cardHeader}>
               <div className={styles.infectionIcon}>{infection.icon}</div>
               <div className={styles.infectionInfo}>
@@ -133,18 +138,18 @@ export default function ViralInfections() {
             <div className={styles.cardContent}>
               <div className={styles.symptomsSection}>
                 <h4>Common Symptoms:</h4>
-                <ul>
+                <ul className={styles.chips}>
                   {infection.symptoms.map((symptom, index) => (
-                    <li key={index}>{symptom}</li>
+                    <li key={index} className={styles.chip}>{symptom}</li>
                   ))}
                 </ul>
               </div>
 
               <div className={styles.preventionSection}>
                 <h4>Prevention:</h4>
-                <ul>
+                <ul className={styles.chips}>
                   {infection.prevention.map((prevention, index) => (
-                    <li key={index}>{prevention}</li>
+                    <li key={index} className={`${styles.chip} ${styles.chipSuccess}`}>{prevention}</li>
                   ))}
                 </ul>
               </div>
@@ -167,7 +172,7 @@ export default function ViralInfections() {
         <h2>General Prevention Tips</h2>
         <div className={styles.tipsGrid}>
           {PREVENTION_TIPS.map((tip, index) => (
-            <div key={index} className={styles.tipCard}>
+            <div key={index} className={`${styles.tipCard} ${styles.fadeIn}`} style={{ animationDelay: `${index * 60}ms` }}>
               <span className={styles.tipNumber}>{index + 1}</span>
               <p>{tip}</p>
             </div>
@@ -178,17 +183,17 @@ export default function ViralInfections() {
       <div className={styles.emergencyInfo}>
         <h2>🚨 When to Seek Emergency Care</h2>
         <div className={styles.emergencyGrid}>
-          <div className={styles.emergencyCard}>
+          <div className={`${styles.emergencyCard} ${styles.fadeIn}`} style={{ animationDelay: '80ms' }}>
             <div className={styles.emergencyIcon}>🚨</div>
             <h3>Severe Symptoms</h3>
             <p>Difficulty breathing, chest pain, severe dehydration, confusion, or high fever that doesn't respond to medication</p>
           </div>
-          <div className={styles.emergencyCard}>
+          <div className={`${styles.emergencyCard} ${styles.fadeIn}`} style={{ animationDelay: '160ms' }}>
             <div className={styles.emergencyIcon}>⚠️</div>
             <h3>High-Risk Groups</h3>
             <p>Elderly, young children, pregnant women, or those with underlying health conditions should seek care early</p>
           </div>
-          <div className={styles.emergencyCard}>
+          <div className={`${styles.emergencyCard} ${styles.fadeIn}`} style={{ animationDelay: '240ms' }}>
             <div className={styles.emergencyIcon}>📞</div>
             <h3>Emergency Numbers</h3>
             <p>Call 1122 for medical emergencies or visit the nearest emergency department immediately</p>

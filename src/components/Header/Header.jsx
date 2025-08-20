@@ -15,7 +15,7 @@ const NAV = [
 
 export default function Header({ show = true }) {
   return (
-    <header className={`${styles.wrap} ${!show ? styles.hidden : ''}`}>
+    <header id="site-header" className={`${styles.wrap} ${!show ? styles.hidden : ''}`}>
       <div className={styles.inner}>
         <div className={styles.brand} aria-label="Site title">Pakistan Medical Guide</div>
         <nav aria-label="Main navigation" className={styles.nav}>

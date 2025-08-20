@@ -115,9 +115,9 @@ export default function WomenHealth() {
               <div className={styles.topicIcon}>{topic.icon}</div>
               <h3>{topic.title}</h3>
               <p>{topic.description}</p>
-              <ul>
+              <ul className={styles.chips}>
                 {topic.topics.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index} className={`${styles.chip} ${index % 2 === 1 ? styles.chipSuccess : ''}`}>{item}</li>
                 ))}
               </ul>
               <button className={styles.learnMoreBtn}>Learn More</button>

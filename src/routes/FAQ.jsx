@@ -55,8 +55,8 @@ export default function FAQ() {
       </div>
 
       <div className={styles.faqList}>
-        {FAQ_DATA.map(faq => (
-          <div key={faq.id} className={styles.faqItem}>
+        {FAQ_DATA.map((faq, idx) => (
+          <div key={faq.id} className={styles.faqItem} style={{animationDelay: `${idx * 80}ms`}}>
             <button
               className={`${styles.question} ${openItems.has(faq.id) ? styles.open : ''}`}
               onClick={() => toggleItem(faq.id)}
@@ -65,7 +65,7 @@ export default function FAQ() {
             >
               <span>{faq.question}</span>
               <span className={styles.icon} aria-hidden="true">
-                {openItems.has(faq.id) ? '−' : '+'}
+                {openItems.has(faq.id) ? '\u2212' : '+'}
               </span>
             </button>
             
@@ -78,17 +78,15 @@ export default function FAQ() {
         ))}
       </div>
 
-      <div className={styles.contactInfo}>
+      <div className={styles.contactInfo} style={{animationDelay: `${FAQ_DATA.length * 80}ms`}}>
         <h2>Still Have Questions?</h2>
         <p>If you couldn't find the answer you're looking for, please don't hesitate to contact us directly:</p>
         <div className={styles.contactOptions}>
           <div className={styles.contactOption}>
             <h3>📧 Email</h3>
             <a 
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=asif.saeed78650@gmail.com&su=Question from Pakistan Medical Guide"
+              href="mailto:asif.saeed78650@gmail.com?subject=Question%20from%20Pakistan%20Medical%20Guide"
               className={styles.contactLink}
-              target="_blank"
-              rel="noopener noreferrer"
             >
               asif.saeed78650@gmail.com
             </a>

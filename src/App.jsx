@@ -14,9 +14,19 @@ import FAQ from './routes/FAQ.jsx';
 
 export default function App() {
   const [showHeader, setShowHeader] = useState(true);
-  const [showFooter, setShowFooter] = useState(false);
   const lastYRef = useRef(0);
   const tickingRef = useRef(false);
+
+  useEffect(() => {
+    const updateHeaderHeightVar = () => {
+      const header = document.getElementById('site-header');
+      const h = header ? header.offsetHeight : 72;
+      document.documentElement.style.setProperty('--header-height', `${h}px`);
+    };
+    updateHeaderHeightVar();
+    window.addEventListener('resize', updateHeaderHeightVar);
+    return () => window.removeEventListener('resize', updateHeaderHeightVar);
+  }, []);
 
   useEffect(() => {
     lastYRef.current = window.scrollY || 0;
@@ -27,19 +37,14 @@ export default function App() {
 
       if (!tickingRef.current) {
         window.requestAnimationFrame(() => {
-          const threshold = 8; // avoid flicker on tiny moves
-          const doc = document.documentElement;
-          const viewportBottom = (window.innerHeight || doc.clientHeight) + currentY;
-          const pageHeight = doc.scrollHeight;
-          const nearBottom = viewportBottom >= pageHeight - 24; // only show footer near end
+          const scrollingDown = delta > 0;
 
           if (currentY <= 0) {
             setShowHeader(true);
-            setShowFooter(false);
-          } else if (Math.abs(delta) > threshold) {
-            const scrollingDown = delta > 0;
-            setShowHeader(!scrollingDown);
-            setShowFooter(nearBottom);
+          } else if (scrollingDown) {
+            setShowHeader(false);
+          } else {
+            setShowHeader(true);
           }
 
           lastYRef.current = currentY;
@@ -56,7 +61,7 @@ export default function App() {
   return (
     <div className="app">
       <Header show={showHeader} />
-      <main aria-live="polite">
+      <main aria-live="polite" style={{ paddingTop: 'var(--header-height)' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/facilities" element={<Facilities />} />
@@ -68,7 +73,7 @@ export default function App() {
           <Route path="/faq" element={<FAQ />} />
         </Routes>
       </main>
-      <Footer show={showFooter} />
+      <Footer show={true} />
     </div>
   );
 }

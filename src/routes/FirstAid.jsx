@@ -184,10 +184,9 @@ const FIRST_AID_SCENARIOS = [
   }
 ];
 
-
-
 export default function FirstAid() {
   const [selectedSeverity, setSelectedSeverity] = useState('all');
+  const [animateFilter, setAnimateFilter] = useState(false);
 
   const filteredScenarios = FIRST_AID_SCENARIOS.filter(scenario => {
     if (selectedSeverity === 'all') return true;
@@ -201,14 +200,16 @@ export default function FirstAid() {
         <p>Essential first aid information for common emergencies</p>
       </div>
 
-
-
-      <div className={styles.filters}>
+      <div className={`${styles.filters} ${animateFilter ? styles.filterPulse : ''}`}>
         <label htmlFor="severity-filter">Filter by Severity:</label>
         <select
           id="severity-filter"
           value={selectedSeverity}
-          onChange={(e) => setSelectedSeverity(e.target.value)}
+          onChange={(e) => {
+            setSelectedSeverity(e.target.value);
+            setAnimateFilter(true);
+            setTimeout(() => setAnimateFilter(false), 300);
+          }}
           className={styles.severityFilter}
         >
           <option value="all">All Severities</option>
@@ -219,8 +220,8 @@ export default function FirstAid() {
       </div>
 
       <div className={styles.scenariosGrid}>
-        {filteredScenarios.map(scenario => (
-          <div key={scenario.id} className={styles.scenarioCard}>
+        {filteredScenarios.map((scenario, idx) => (
+          <div key={scenario.id} className={`${styles.scenarioCard} ${styles.fadeIn}`} style={{ animationDelay: `${idx * 60}ms` }}>
             <div className={styles.cardHeader}>
               <div className={styles.scenarioIcon}>{scenario.icon}</div>
               <div className={styles.scenarioInfo}>
@@ -233,18 +234,24 @@ export default function FirstAid() {
 
             <div className={styles.stepsSection}>
               <h4>What to Do:</h4>
-              <ol>
+              <ol className={styles.stepsList}>
                 {scenario.steps.map((step, index) => (
-                  <li key={index}>{step}</li>
+                  <li key={index} className={`${styles.listItem} ${styles.fadeIn}`} style={{ animationDelay: `${index * 40}ms` }}>
+                    <span className={styles.stepBadge}>{index + 1}</span>
+                    <span className={styles.itemText}>{step}</span>
+                  </li>
                 ))}
               </ol>
             </div>
 
             <div className={styles.dontsSection}>
               <h4>What NOT to Do:</h4>
-              <ul>
+              <ul className={styles.dontsList}>
                 {scenario.donts.map((dont, index) => (
-                  <li key={index}>{dont}</li>
+                  <li key={index} className={`${styles.listItem} ${styles.listDanger} ${styles.fadeIn}`} style={{ animationDelay: `${index * 40}ms` }}>
+                    <span className={styles.crossBadge}>×</span>
+                    <span className={styles.itemText}>{dont}</span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -257,34 +264,44 @@ export default function FirstAid() {
         ))}
       </div>
 
-      <div className={styles.importantNotes}>
+      <div className={`${styles.importantNotes} ${styles.fadeIn}`} style={{ animationDelay: '120ms' }}>
         <h2> Important Notes</h2>
         <div className={styles.notesList}>
-          <div className={styles.noteItem}>
-            <h3>When to Call Emergency Services</h3>
-            <ul>
-              <li>Severe bleeding that doesn't stop</li>
-              <li>Difficulty breathing or chest pain</li>
-              <li>Unconsciousness or severe head injury</li>
-              <li>Severe burns or electrical injuries</li>
-              <li>Poisoning or drug overdose</li>
-            </ul>
-          </div>
-          
-          <div className={styles.noteItem}>
-            <h3>First Aid Kit Essentials</h3>
-            <ul>
-              <li>Sterile gauze and bandages</li>
-              <li>Adhesive tape and scissors</li>
-              <li>Antiseptic wipes and ointment</li>
-              <li>Pain relievers and thermometer</li>
-              <li>Emergency contact information</li>
-            </ul>
-          </div>
+          {[
+            {
+              title: 'When to Call Emergency Services',
+              items: [
+                "Severe bleeding that doesn't stop",
+                "Difficulty breathing or chest pain",
+                "Unconsciousness or severe head injury",
+                "Severe burns or electrical injuries",
+                "Poisoning or drug overdose",
+              ],
+            },
+            {
+              title: 'First Aid Kit Essentials',
+              items: [
+                'Sterile gauze and bandages',
+                'Adhesive tape and scissors',
+                'Antiseptic wipes and ointment',
+                'Pain relievers and thermometer',
+                'Emergency contact information',
+              ],
+            },
+          ].map((note, i) => (
+            <div key={note.title} className={`${styles.noteItem} ${styles.fadeIn}`} style={{ animationDelay: `${i * 80}ms` }}>
+              <h3>{note.title}</h3>
+              <ul className={styles.noteBullets}>
+                {note.items.map((text, j) => (
+                  <li key={j} className={`${styles.noteBullet} ${styles.fadeIn}`} style={{ animationDelay: `${j * 40}ms` }}>{text}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className={styles.disclaimer}>
+      <div className={`${styles.disclaimer} ${styles.fadeIn}`} style={{ animationDelay: '200ms' }}>
         <h3>🚨 Medical Disclaimer</h3>
         <p>This first aid information is for educational purposes only. First aid is not a substitute for professional medical care. Always call emergency services (1122) for serious injuries or medical emergencies. The information provided here is meant to help in emergency situations until professional help arrives.</p>
       </div>
